@@ -42,6 +42,7 @@
 }
 
 .about__title {
+  font-family: "Roboto Slab", serif;
   font-size: 40px;
   font-weight: 700;
   color: #222222;
@@ -49,10 +50,11 @@
 }
 
 .about__text {
+  font-family: "Roboto", sans-serif;
   font-size: 18px;
   font-weight: 400;
   color: #444444;
-  line-height: 1.6;
+  line-height: 1.33;
   margin: 0 0 24px;
 }
 

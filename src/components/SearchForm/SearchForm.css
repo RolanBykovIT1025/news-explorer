@@ -12,6 +12,7 @@
   padding: 0 20px;
   border: none;
   outline: none;
+  font-family: "Roboto", sans-serif;
   font-size: 16px;
   font-weight: 400;
   color: #222222;
@@ -23,6 +24,7 @@
 }
 
 .search-form__btn {
+  font-family: "Roboto", sans-serif;
   background: #2f80ed;
   border: none;
   border-radius: 32px;
