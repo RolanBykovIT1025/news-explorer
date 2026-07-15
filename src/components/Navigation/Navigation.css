@@ -1,3 +1,59 @@
 .nav {
-  /* to be styled */
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav__link {
+  font-size: 18px;
+  font-weight: 400;
+  color: #ffffff;
+  text-decoration: none;
+  padding-bottom: 4px;
+}
+
+.nav__link_active {
+  border-bottom: 1px solid #ffffff;
+}
+
+.nav__signin-btn {
+  background: transparent;
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+  padding: 8px 24px;
+  font-size: 18px;
+  font-weight: 400;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.nav__signin-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.nav__profile-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: 1px solid #ffffff;
+  border-radius: 20px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.nav__profile-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.nav__profile-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.nav__profile-icon {
+  font-size: 16px;
 }

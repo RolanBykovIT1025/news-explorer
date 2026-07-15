@@ -6,8 +6,12 @@ import "./App.css";
 function App() {
   return (
     <div className="app">
-      <Header />
-      <Main />
+      <Header loggedIn={false} />
+      <Main
+        loggedIn={false}
+        isLoading={false}
+        newsCards={[]}
+      />
       <Footer />
     </div>
   );
