@@ -1,6 +1,6 @@
 import "./Navigation.css";
 
-function Navigation({ loggedIn }) {
+function Navigation({ loggedIn, onSignIn }) {
   return (
     <nav className="nav">
       <a href="/" className="nav__link nav__link_active">Home</a>
@@ -11,7 +11,7 @@ function Navigation({ loggedIn }) {
           <span className="nav__profile-icon">👤</span>
         </button>
       ) : (
-        <button className="nav__signin-btn" type="button">Sign in</button>
+        <button className="nav__signin-btn" type="button" onClick={onSignIn}>Sign in</button>
       )}
     </nav>
   );
