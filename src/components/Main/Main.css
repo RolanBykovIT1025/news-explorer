@@ -84,3 +84,15 @@
 .results__show-more:hover {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
+
+.results_error {
+  text-align: center;
+  padding: 48px 20px;
+}
+
+.results__error-msg {
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  color: #6b7280;
+  margin: 0;
+}
