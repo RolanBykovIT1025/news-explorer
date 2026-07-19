@@ -1,12 +1,22 @@
 import "./NewsCard.css";
 
 function NewsCard({ card, loggedIn }) {
+  const formatDate = (dateStr) => {
+    if (!dateStr) return "November 4, 2020";
+    const d = new Date(dateStr);
+    return d.toLocaleDateString("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    });
+  };
+
   return (
     <article className="news-card">
       <div className="news-card__image-wrapper">
         <img
           className="news-card__image"
-          src={card.image || "https://via.placeholder.com/400x200?text=News"}
+          src={card.image || "https://via.placeholder.com/400x272?text=News"}
           alt={card.title}
         />
         <div className="news-card__action">
@@ -22,10 +32,10 @@ function NewsCard({ card, loggedIn }) {
         </div>
       </div>
       <div className="news-card__body">
-        <p className="news-card__date">{card.date || "November 4, 2020"}</p>
+        <p className="news-card__date">{formatDate(card.date)}</p>
         <h3 className="news-card__title">{card.title || "Everyone Needs a Special 'Sit Spot' in Nature"}</h3>
         <p className="news-card__text">
-          {card.text || "Ever since I read Richard Louv's influential book..."}
+          {card.text || "Ever since I read Richard Louv's influential book about the relationship between nature and the human spirit..."}
         </p>
         <p className="news-card__source">{card.source || "TREEHUGGER"}</p>
       </div>
