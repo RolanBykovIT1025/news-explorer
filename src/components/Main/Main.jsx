@@ -5,7 +5,7 @@ import NoResults from "../NoResults/NoResults";
 import About from "../About/About";
 import "./Main.css";
 
-function Main({ loggedIn, isLoading, newsCards, hasSearched, onSearch, searchError, onSaveArticle, savedArticles }) {
+function Main({ loggedIn, isLoading, newsCards, hasSearched, onSearch, searchError, onSaveArticle, savedArticles, onSignInClick }) {
   return (
     <main className="main">
       <section className="hero">
@@ -43,6 +43,7 @@ function Main({ loggedIn, isLoading, newsCards, hasSearched, onSearch, searchErr
                 loggedIn={loggedIn}
                 onSaveArticle={onSaveArticle}
                 savedArticles={savedArticles}
+                onSignInClick={onSignInClick}
               />
             ))}
           </div>

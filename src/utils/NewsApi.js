@@ -1,6 +1,9 @@
 const NEWS_API_BASE = "https://nomoreparties.co/news/v2";
 const DAYS_AGO = 7;
 
+// ⚠️ Replace this with your own API key from https://newsapi.org/register
+const API_KEY = "ee8d410e8af24de7b286dd2327607303";
+
 function getDateRange() {
   const to = new Date();
   const from = new Date();
@@ -19,6 +22,7 @@ export function searchNews(keyword) {
     to,
     pageSize: 100,
     language: "en",
+    apiKey: API_KEY,
   });
 
   return fetch(`${NEWS_API_BASE}/everything?${params}`).then((res) => {

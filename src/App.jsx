@@ -111,6 +111,7 @@ function App() {
           onSearch={handleSearch}
           searchError={searchError}
           onSaveArticle={handleSaveArticle}
+          onSignInClick={handleSignInClick}
         />
       ) : (
         <SavedNews
