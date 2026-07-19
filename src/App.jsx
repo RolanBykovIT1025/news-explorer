@@ -110,6 +110,7 @@ function App() {
           hasSearched={hasSearched}
           onSearch={handleSearch}
           searchError={searchError}
+          savedArticles={savedArticles}
           onSaveArticle={handleSaveArticle}
           onSignInClick={handleSignInClick}
         />
