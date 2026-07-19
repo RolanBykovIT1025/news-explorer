@@ -19,3 +19,13 @@
   text-decoration: none;
   margin: 0;
 }
+
+.header_theme_light {
+  position: relative;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.header__logo_theme_light {
+  color: #1a1a1a;
+}

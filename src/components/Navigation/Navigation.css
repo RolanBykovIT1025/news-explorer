@@ -9,12 +9,25 @@
   font-size: 18px;
   font-weight: 500;
   color: #ffffff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 0 4px;
   text-decoration: none;
-  padding-bottom: 4px;
+  transition: color 0.2s;
+}
+
+/* Light theme (saved articles page) */
+.header_theme_light .nav__link {
+  color: #1a1a1a;
 }
 
 .nav__link_active {
   border-bottom: 1px solid #ffffff;
+}
+
+.header_theme_light .nav__link_active {
+  border-bottom-color: #1a1a1a;
 }
 
 .nav__signin-btn {
@@ -34,6 +47,15 @@
   background: rgba(255, 255, 255, 0.1);
 }
 
+.header_theme_light .nav__signin-btn {
+  border-color: #1a1a1a;
+  color: #1a1a1a;
+}
+
+.header_theme_light .nav__signin-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
 .nav__profile-btn {
   display: flex;
   align-items: center;
@@ -50,10 +72,22 @@
   background: rgba(255, 255, 255, 0.1);
 }
 
+.header_theme_light .nav__profile-btn {
+  border-color: #1a1a1a;
+}
+
+.header_theme_light .nav__profile-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
 .nav__profile-name {
   font-size: 14px;
   font-weight: 500;
   color: #ffffff;
+}
+
+.header_theme_light .nav__profile-name {
+  color: #1a1a1a;
 }
 
 .nav__profile-icon {

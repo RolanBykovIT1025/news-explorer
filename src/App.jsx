@@ -1,6 +1,7 @@
 import { useState, useCallback } from "react";
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
+import SavedNews from "./components/SavedNews/SavedNews";
 import Footer from "./components/Footer/Footer";
 import SignInModal from "./components/SignInModal/SignInModal";
 import SignUpModal from "./components/SignUpModal/SignUpModal";
@@ -8,6 +9,7 @@ import { searchNews, getNewsCardData } from "./utils/NewsApi";
 import "./App.css";
 
 function App() {
+  const [currentPage, setCurrentPage] = useState("main");
   const [loggedIn] = useState(false);
   const [isSignInOpen, setIsSignInOpen] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
@@ -36,6 +38,8 @@ function App() {
       .finally(() => setIsLoading(false));
   }, []);
 
+  const handlePageChange = (page) => setCurrentPage(page);
+
   const handleSignInClick = () => setIsSignInOpen(true);
   const handleSignInClose = () => setIsSignInOpen(false);
 
@@ -53,15 +57,24 @@ function App() {
 
   return (
     <div className="app">
-      <Header loggedIn={loggedIn} onSignIn={handleSignInClick} />
-      <Main
+      <Header
         loggedIn={loggedIn}
-        isLoading={isLoading}
-        newsCards={newsCards}
-        hasSearched={hasSearched}
-        onSearch={handleSearch}
-        searchError={searchError}
+        onSignIn={handleSignInClick}
+        currentPage={currentPage}
+        onPageChange={handlePageChange}
       />
+      {currentPage === "main" ? (
+        <Main
+          loggedIn={loggedIn}
+          isLoading={isLoading}
+          newsCards={newsCards}
+          hasSearched={hasSearched}
+          onSearch={handleSearch}
+          searchError={searchError}
+        />
+      ) : (
+        <SavedNews loggedIn={loggedIn} />
+      )}
       <Footer />
       <SignInModal
         isOpen={isSignInOpen}

@@ -1,17 +1,33 @@
 import "./Navigation.css";
 
-function Navigation({ loggedIn, onSignIn }) {
+function Navigation({ loggedIn, onSignIn, currentPage, onPageChange }) {
   return (
     <nav className="nav">
-      <a href="/" className="nav__link nav__link_active">Home</a>
-      {loggedIn && <a href="/saved" className="nav__link">Saved articles</a>}
+      <button
+        className={`nav__link${currentPage === "main" ? " nav__link_active" : ""}`}
+        type="button"
+        onClick={() => onPageChange("main")}
+      >
+        Home
+      </button>
+      {loggedIn && (
+        <button
+          className={`nav__link${currentPage === "saved" ? " nav__link_active" : ""}`}
+          type="button"
+          onClick={() => onPageChange("saved")}
+        >
+          Saved articles
+        </button>
+      )}
       {loggedIn ? (
         <button className="nav__profile-btn" type="button">
           <span className="nav__profile-name">Elise</span>
           <span className="nav__profile-icon">👤</span>
         </button>
       ) : (
-        <button className="nav__signin-btn" type="button" onClick={onSignIn}>Sign in</button>
+        <button className="nav__signin-btn" type="button" onClick={onSignIn}>
+          Sign in
+        </button>
       )}
     </nav>
   );
