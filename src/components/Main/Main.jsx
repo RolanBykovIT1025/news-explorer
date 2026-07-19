@@ -5,7 +5,7 @@ import NoResults from "../NoResults/NoResults";
 import About from "../About/About";
 import "./Main.css";
 
-function Main({ loggedIn, isLoading, newsCards, hasSearched, onSearch, searchError }) {
+function Main({ loggedIn, isLoading, newsCards, hasSearched, onSearch, searchError, onSaveArticle, savedArticles }) {
   return (
     <main className="main">
       <section className="hero">
@@ -37,7 +37,13 @@ function Main({ loggedIn, isLoading, newsCards, hasSearched, onSearch, searchErr
           <h2 className="results__title">Search results</h2>
           <div className="results__grid">
             {newsCards.map((card, i) => (
-              <NewsCard key={i} card={card} loggedIn={loggedIn} />
+              <NewsCard
+                key={i}
+                card={card}
+                loggedIn={loggedIn}
+                onSaveArticle={onSaveArticle}
+                savedArticles={savedArticles}
+              />
             ))}
           </div>
           <button className="results__show-more" type="button">

@@ -51,6 +51,10 @@
   margin: 0 0 24px;
 }
 
+.modal__form {
+  margin: 0;
+}
+
 .modal__field {
   margin-bottom: 20px;
 }
@@ -87,6 +91,23 @@
 
 .modal__input:focus {
   border-bottom-color: #2f80ed;
+}
+
+.modal__input_error {
+  border-bottom-color: #e53e3e;
+}
+
+.modal__input_error:focus {
+  border-bottom-color: #e53e3e;
+}
+
+.modal__error {
+  display: block;
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: #e53e3e;
+  margin-top: 4px;
 }
 
 .modal__submit {

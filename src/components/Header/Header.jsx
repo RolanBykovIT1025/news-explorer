@@ -1,7 +1,7 @@
 import Navigation from "../Navigation/Navigation";
 import "./Header.css";
 
-function Header({ loggedIn, onSignIn, currentPage, onPageChange }) {
+function Header({ loggedIn, currentUser, onSignIn, onLogout, currentPage, onPageChange }) {
   const isSavedPage = currentPage === "saved";
 
   return (
@@ -11,7 +11,9 @@ function Header({ loggedIn, onSignIn, currentPage, onPageChange }) {
       </p>
       <Navigation
         loggedIn={loggedIn}
+        currentUser={currentUser}
         onSignIn={onSignIn}
+        onLogout={onLogout}
         currentPage={currentPage}
         onPageChange={onPageChange}
       />

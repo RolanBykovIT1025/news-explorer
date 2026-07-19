@@ -20,6 +20,11 @@
   flex-shrink: 0;
 }
 
+.news-card__link {
+  display: block;
+  text-decoration: none;
+}
+
 .news-card__image {
   width: 100%;
   height: 100%;
@@ -52,6 +57,14 @@
 
 .news-card__bookmark:hover {
   background: #f0f0f0;
+}
+
+.news-card__bookmark_saved {
+  background: #e8f0fe;
+}
+
+.news-card__bookmark_saved:hover {
+  background: #d0e2fc;
 }
 
 .news-card__tooltip {

@@ -10,13 +10,15 @@ import "./App.css";
 
 function App() {
   const [currentPage, setCurrentPage] = useState("main");
-  const [loggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
   const [isSignInOpen, setIsSignInOpen] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
   const [newsCards, setNewsCards] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
   const [searchError, setSearchError] = useState(null);
+  const [savedArticles, setSavedArticles] = useState([]);
 
   const handleSearch = useCallback((keyword) => {
     setIsLoading(true);
@@ -37,6 +39,41 @@ function App() {
       })
       .finally(() => setIsLoading(false));
   }, []);
+
+  const handleSignIn = ({ email, password }) => {
+    // In production, this calls the backend API.
+    // For now, mock a successful login
+    setCurrentUser({ name: "Elise", email });
+    setLoggedIn(true);
+    setIsSignInOpen(false);
+  };
+
+  const handleSignUp = ({ name, email, password }) => {
+    // In production, this calls the backend API.
+    // For now, mock a successful registration + auto-login
+    setCurrentUser({ name, email });
+    setLoggedIn(true);
+    setIsSignUpOpen(false);
+    setCurrentPage("main");
+  };
+
+  const handleLogout = () => {
+    setLoggedIn(false);
+    setCurrentUser(null);
+    setCurrentPage("main");
+  };
+
+  const handleSaveArticle = (card) => {
+    setSavedArticles((prev) => {
+      const exists = prev.find((a) => a.link === card.link);
+      if (exists) return prev.filter((a) => a.link !== card.link);
+      return [card, ...prev];
+    });
+  };
+
+  const handleDeleteArticle = (card) => {
+    setSavedArticles((prev) => prev.filter((a) => a.link !== card.link));
+  };
 
   const handlePageChange = (page) => setCurrentPage(page);
 
@@ -59,7 +96,9 @@ function App() {
     <div className="app">
       <Header
         loggedIn={loggedIn}
+        currentUser={currentUser}
         onSignIn={handleSignInClick}
+        onLogout={handleLogout}
         currentPage={currentPage}
         onPageChange={handlePageChange}
       />
@@ -71,20 +110,28 @@ function App() {
           hasSearched={hasSearched}
           onSearch={handleSearch}
           searchError={searchError}
+          onSaveArticle={handleSaveArticle}
         />
       ) : (
-        <SavedNews loggedIn={loggedIn} />
+        <SavedNews
+          loggedIn={loggedIn}
+          currentUser={currentUser}
+          savedArticles={savedArticles}
+          onDeleteArticle={handleDeleteArticle}
+        />
       )}
       <Footer />
       <SignInModal
         isOpen={isSignInOpen}
         onClose={handleSignInClose}
         onSignUpClick={handleSignUpClick}
+        onSignIn={handleSignIn}
       />
       <SignUpModal
         isOpen={isSignUpOpen}
         onClose={handleSignUpClose}
         onSignInClick={handleSignInFromUp}
+        onSignUp={handleSignUp}
       />
     </div>
   );
