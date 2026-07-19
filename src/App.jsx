@@ -3,16 +3,26 @@ import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import Footer from "./components/Footer/Footer";
 import SignInModal from "./components/SignInModal/SignInModal";
+import SignUpModal from "./components/SignUpModal/SignUpModal";
 import "./App.css";
 
 function App() {
   const [isSignInOpen, setIsSignInOpen] = useState(false);
+  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
 
   const handleSignInClick = () => setIsSignInOpen(true);
   const handleSignInClose = () => setIsSignInOpen(false);
+
   const handleSignUpClick = () => {
     setIsSignInOpen(false);
-    // TODO: open sign-up modal
+    setIsSignUpOpen(true);
+  };
+
+  const handleSignUpClose = () => setIsSignUpOpen(false);
+
+  const handleSignInFromUp = () => {
+    setIsSignUpOpen(false);
+    setIsSignInOpen(true);
   };
 
   return (
@@ -28,6 +38,11 @@ function App() {
         isOpen={isSignInOpen}
         onClose={handleSignInClose}
         onSignUpClick={handleSignUpClick}
+      />
+      <SignUpModal
+        isOpen={isSignUpOpen}
+        onClose={handleSignUpClose}
+        onSignInClick={handleSignInFromUp}
       />
     </div>
   );
