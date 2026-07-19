@@ -163,3 +163,24 @@
 .modal__link:hover {
   text-decoration: underline;
 }
+
+/* Mobile */
+@media screen and (max-width: 768px) {
+  .modal {
+    width: calc(100% - 32px);
+    max-width: 380px;
+    padding: 24px;
+  }
+
+  .modal__close {
+    top: -28px;
+    right: -8px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .modal__title {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+}

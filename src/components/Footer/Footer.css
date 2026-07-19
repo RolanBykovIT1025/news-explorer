@@ -53,3 +53,21 @@
 .footer__social:hover {
   opacity: 1;
 }
+
+/* Mobile */
+@media screen and (max-width: 768px) {
+  .footer {
+    height: auto;
+    padding: 20px 0;
+  }
+
+  .footer__container {
+    flex-direction: column;
+    gap: 16px;
+    padding: 0 20px;
+  }
+
+  .footer__links {
+    gap: 16px;
+  }
+}

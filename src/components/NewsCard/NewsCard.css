@@ -131,3 +131,18 @@
   letter-spacing: 0.5px;
   margin: 8px 0 0;
 }
+
+/* Mobile */
+@media screen and (max-width: 768px) {
+  .news-card__image-wrapper {
+    height: 196px;
+  }
+
+  .news-card__body {
+    padding: 16px;
+  }
+
+  .news-card__title {
+    font-size: 18px;
+  }
+}

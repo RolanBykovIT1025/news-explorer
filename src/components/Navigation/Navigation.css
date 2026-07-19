@@ -93,3 +93,23 @@
 .nav__profile-icon {
   font-size: 16px;
 }
+
+/* Mobile */
+@media screen and (max-width: 768px) {
+  .nav {
+    gap: 16px;
+  }
+
+  .nav__link {
+    font-size: 16px;
+  }
+
+  .nav__signin-btn {
+    font-size: 16px;
+    padding: 6px 16px;
+  }
+
+  .nav__profile-btn {
+    padding: 6px 12px;
+  }
+}
