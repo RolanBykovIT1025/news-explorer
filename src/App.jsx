@@ -69,8 +69,13 @@ function App() {
 
   const handleSignIn = ({ email, password }) => {
     // In production, this calls the backend API.
-    // For now, mock a successful login
-    setCurrentUser({ name: "Elise", email });
+    // Derive display name from email (part before @, capitalized)
+    const name = email.split("@")[0].replace(/[._-]/g, " ");
+    const displayName = name
+      .split(" ")
+      .map((w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
+      .join(" ");
+    setCurrentUser({ name: displayName, email });
     setLoggedIn(true);
     setIsSignInOpen(false);
   };
