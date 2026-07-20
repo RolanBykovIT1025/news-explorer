@@ -15,21 +15,30 @@ function App() {
   const [isSignInOpen, setIsSignInOpen] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
   const [newsCards, setNewsCards] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
   const [searchError, setSearchError] = useState(null);
   const [savedArticles, setSavedArticles] = useState([]);
+  const [currentKeyword, setCurrentKeyword] = useState("");
+  const [totalResults, setTotalResults] = useState(0);
+  const [searchPage, setSearchPage] = useState(1);
+
+  const isLoading = isSearching || isLoadingMore;
 
   const handleSearch = useCallback((keyword) => {
-    setIsLoading(true);
+    setIsSearching(true);
     setSearchError(null);
+    setCurrentKeyword(keyword);
+    setSearchPage(1);
 
-    searchNews(keyword)
+    searchNews(keyword, 1)
       .then((data) => {
         const cards = (data.articles || []).map((a) =>
           getNewsCardData(a, keyword)
         );
         setNewsCards(cards);
+        setTotalResults(data.totalResults || 0);
         setHasSearched(true);
       })
       .catch((err) => {
@@ -37,8 +46,26 @@ function App() {
         setNewsCards([]);
         setHasSearched(true);
       })
-      .finally(() => setIsLoading(false));
+      .finally(() => setIsSearching(false));
   }, []);
+
+  const handleShowMore = useCallback(() => {
+    const nextPage = searchPage + 1;
+    setIsLoadingMore(true);
+
+    searchNews(currentKeyword, nextPage)
+      .then((data) => {
+        const cards = (data.articles || []).map((a) =>
+          getNewsCardData(a, currentKeyword)
+        );
+        setNewsCards((prev) => [...prev, ...cards]);
+        setSearchPage(nextPage);
+      })
+      .catch((err) => {
+        setSearchError(err.message);
+      })
+      .finally(() => setIsLoadingMore(false));
+  }, [currentKeyword, searchPage]);
 
   const handleSignIn = ({ email, password }) => {
     // In production, this calls the backend API.
@@ -105,6 +132,8 @@ function App() {
       {currentPage === "main" ? (
         <Main
           loggedIn={loggedIn}
+          isSearching={isSearching}
+          isLoadingMore={isLoadingMore}
           isLoading={isLoading}
           newsCards={newsCards}
           hasSearched={hasSearched}
@@ -113,6 +142,8 @@ function App() {
           savedArticles={savedArticles}
           onSaveArticle={handleSaveArticle}
           onSignInClick={handleSignInClick}
+          totalResults={totalResults}
+          onShowMore={handleShowMore}
         />
       ) : (
         <SavedNews

@@ -5,7 +5,8 @@ import NoResults from "../NoResults/NoResults";
 import About from "../About/About";
 import "./Main.css";
 
-function Main({ loggedIn, isLoading, newsCards, hasSearched, onSearch, searchError, onSaveArticle, savedArticles, onSignInClick }) {
+function Main({ loggedIn, isSearching, isLoadingMore, isLoading, newsCards, hasSearched, onSearch, searchError, onSaveArticle, savedArticles, onSignInClick, totalResults, onShowMore }) {
+  const hasMore = newsCards.length > 0 && newsCards.length < totalResults;
   return (
     <main className="main">
       <section className="hero">
@@ -14,13 +15,13 @@ function Main({ loggedIn, isLoading, newsCards, hasSearched, onSearch, searchErr
           <p className="hero__subtitle">
             Find the latest news on any topic and save them in your personal account.
           </p>
-          <SearchForm onSearch={onSearch} />
+          <SearchForm onSearch={onSearch} isLoading={isLoading} />
         </div>
       </section>
 
-      {isLoading && <Preloader />}
+      {isSearching && <Preloader />}
 
-      {!isLoading && searchError && (
+      {!isSearching && searchError && (
         <section className="results results_error">
           <p className="results__error-msg">
             Sorry, something went wrong during the request. Please try again.
@@ -28,11 +29,11 @@ function Main({ loggedIn, isLoading, newsCards, hasSearched, onSearch, searchErr
         </section>
       )}
 
-      {!isLoading && hasSearched && !searchError && newsCards.length === 0 && (
+      {!isSearching && hasSearched && !searchError && newsCards.length === 0 && (
         <NoResults />
       )}
 
-      {!isLoading && newsCards.length > 0 && !searchError && (
+      {newsCards.length > 0 && !searchError && (
         <section className="results">
           <h2 className="results__title">Search results</h2>
           <div className="results__grid">
@@ -47,9 +48,16 @@ function Main({ loggedIn, isLoading, newsCards, hasSearched, onSearch, searchErr
               />
             ))}
           </div>
-          <button className="results__show-more" type="button">
-            Show more
-          </button>
+          {hasMore && (
+            <button
+              className="results__show-more"
+              type="button"
+              onClick={onShowMore}
+              disabled={isLoadingMore}
+            >
+              {isLoadingMore ? "Loading..." : "Show more"}
+            </button>
+          )}
         </section>
       )}
 

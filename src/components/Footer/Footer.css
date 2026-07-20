@@ -62,12 +62,37 @@
   }
 
   .footer__container {
-    flex-direction: column;
+    flex-direction: column-reverse;
     gap: 16px;
     padding: 0 20px;
   }
 
   .footer__links {
     gap: 16px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .footer {
+    padding: 16px 0;
+  }
+
+  .footer__container {
+    gap: 12px;
+    padding: 0 16px;
+  }
+
+  .footer__copyright {
+    font-size: 12px;
+  }
+
+  .footer__link {
+    font-size: 14px;
+  }
+
+  .footer__links {
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }

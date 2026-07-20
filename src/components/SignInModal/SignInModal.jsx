@@ -5,24 +5,56 @@ function SignInModal({ isOpen, onClose, onSignUpClick, onSignIn }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
-  const [submitted, setSubmitted] = useState(false);
+  const [touched, setTouched] = useState({});
 
-  const validate = () => {
+  const validate = (emailVal, passwordVal) => {
     const errs = {};
-    if (!email.trim()) errs.email = "Email is required";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+    if (!emailVal.trim()) errs.email = "Email is required";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal))
       errs.email = "Invalid email format";
-    if (!password) errs.password = "Password is required";
-    else if (password.length < 6)
+    if (!passwordVal) errs.password = "Password is required";
+    else if (passwordVal.length < 6)
       errs.password = "Password must be at least 6 characters";
     return errs;
   };
 
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+    setTouched((prev) => ({ ...prev, email: true }));
+    setErrors((prev) => ({ ...prev, email: undefined }));
+  };
+
+  const handleEmailBlur = () => {
+    if (!email.trim()) {
+      setErrors((prev) => ({ ...prev, email: "Email is required" }));
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setErrors((prev) => ({ ...prev, email: "Invalid email format" }));
+    } else {
+      setErrors((prev) => ({ ...prev, email: undefined }));
+    }
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+    setTouched((prev) => ({ ...prev, password: true }));
+    setErrors((prev) => ({ ...prev, password: undefined }));
+  };
+
+  const handlePasswordBlur = () => {
+    if (!password) {
+      setErrors((prev) => ({ ...prev, password: "Password is required" }));
+    } else if (password.length < 6) {
+      setErrors((prev) => ({ ...prev, password: "Password must be at least 6 characters" }));
+    } else {
+      setErrors((prev) => ({ ...prev, password: undefined }));
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    const errs = validate();
+    const errs = validate(email, password);
     setErrors(errs);
+    setTouched({ email: true, password: true });
     if (Object.keys(errs).length === 0 && onSignIn) {
       onSignIn({ email, password });
     }
@@ -32,13 +64,11 @@ function SignInModal({ isOpen, onClose, onSignUpClick, onSignIn }) {
     setEmail("");
     setPassword("");
     setErrors({});
-    setSubmitted(false);
+    setTouched({});
     onClose();
   };
 
   if (!isOpen) return null;
-
-  const isValid = email.trim() && password.length >= 6 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   return (
     <div className="modal-overlay" onClick={handleClose}>
@@ -56,27 +86,29 @@ function SignInModal({ isOpen, onClose, onSignUpClick, onSignIn }) {
             <label className="modal__label">Email</label>
             <input
               type="email"
-              className={`modal__input${errors.email && submitted ? " modal__input_error" : ""}`}
+              className={`modal__input${touched.email && errors.email ? " modal__input_error" : ""}`}
               placeholder="Enter email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={handleEmailChange}
+              onBlur={handleEmailBlur}
             />
-            {errors.email && submitted && <span className="modal__error">{errors.email}</span>}
+            {touched.email && errors.email && <span className="modal__error">{errors.email}</span>}
           </div>
 
           <div className="modal__field">
             <label className="modal__label">Password</label>
             <input
               type="password"
-              className={`modal__input${errors.password && submitted ? " modal__input_error" : ""}`}
+              className={`modal__input${touched.password && errors.password ? " modal__input_error" : ""}`}
               placeholder="Enter password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={handlePasswordChange}
+              onBlur={handlePasswordBlur}
             />
-            {errors.password && submitted && <span className="modal__error">{errors.password}</span>}
+            {touched.password && errors.password && <span className="modal__error">{errors.password}</span>}
           </div>
 
-          <button className="modal__submit" type="submit" disabled={!isValid}>
+          <button className="modal__submit" type="submit">
             Sign in
           </button>
         </form>

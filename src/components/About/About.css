@@ -90,3 +90,29 @@
     font-size: 16px;
   }
 }
+
+@media screen and (max-width: 480px) {
+  .about {
+    padding: 32px 16px;
+  }
+
+  .about__image-placeholder {
+    width: 160px;
+    height: 160px;
+    padding: 16px;
+  }
+
+  .about__image-text {
+    font-size: 12px;
+  }
+
+  .about__title {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+
+  .about__text {
+    font-size: 15px;
+    margin-bottom: 16px;
+  }
+}

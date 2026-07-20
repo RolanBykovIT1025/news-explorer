@@ -5,6 +5,16 @@ function SavedNews({ loggedIn, currentUser, savedArticles, onDeleteArticle }) {
   const keywords = [...new Set(savedCards.map((c) => c.keyword))];
   const userName = currentUser?.name || "User";
 
+  const formatDate = (dateStr) => {
+    if (!dateStr) return "November 4, 2020";
+    const d = new Date(dateStr);
+    return d.toLocaleDateString("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    });
+  };
+
   if (!loggedIn) {
     return (
       <main className="saved-news">
@@ -64,11 +74,7 @@ function SavedNews({ loggedIn, currentUser, savedArticles, onDeleteArticle }) {
                 <span className="saved-news__card-keyword">{card.keyword}</span>
                 <div className="saved-news__card-body">
                   <p className="saved-news__card-date">
-                    {new Date(card.date).toLocaleDateString("en-US", {
-                      month: "long",
-                      day: "numeric",
-                      year: "numeric",
-                    })}
+                    {formatDate(card.date)}
                   </p>
                   <h3 className="saved-news__card-title">{card.title}</h3>
                   <p className="saved-news__card-text">{card.text}</p>

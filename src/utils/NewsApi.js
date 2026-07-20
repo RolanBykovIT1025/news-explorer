@@ -13,7 +13,7 @@ function getDateRange() {
   return { from: fmt(from), to: fmt(to) };
 }
 
-export function searchNews(keyword) {
+export function searchNews(keyword, page = 1) {
   const { from, to } = getDateRange();
 
   const params = new URLSearchParams({
@@ -21,6 +21,7 @@ export function searchNews(keyword) {
     from,
     to,
     pageSize: 100,
+    page,
     language: "en",
     apiKey: API_KEY,
   });

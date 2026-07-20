@@ -148,3 +148,48 @@
     font-size: 18px;
   }
 }
+
+@media screen and (max-width: 480px) {
+  .news-card__image-wrapper {
+    height: 160px;
+  }
+
+  .news-card__body {
+    padding: 12px 14px;
+    gap: 8px;
+  }
+
+  .news-card__title {
+    font-size: 16px;
+    -webkit-line-clamp: 2;
+  }
+
+  .news-card__text {
+    font-size: 13px;
+    -webkit-line-clamp: 3;
+  }
+
+  .news-card__date {
+    font-size: 12px;
+  }
+
+  .news-card__source {
+    font-size: 12px;
+    margin-top: 4px;
+  }
+
+  .news-card__bookmark {
+    width: 32px;
+    height: 32px;
+  }
+
+  .news-card__bookmark svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .news-card__tooltip {
+    font-size: 11px;
+    padding: 6px 12px;
+  }
+}

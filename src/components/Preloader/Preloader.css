@@ -29,3 +29,25 @@
   font-weight: 400;
   color: #6b7280;
 }
+
+/* Mobile */
+@media screen and (max-width: 768px) {
+  .preloader {
+    padding: 48px 0;
+  }
+
+  .preloader__text {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .preloader {
+    padding: 32px 0;
+  }
+
+  .preloader__spinner {
+    width: 48px;
+    height: 48px;
+  }
+}

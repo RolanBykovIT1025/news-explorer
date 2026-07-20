@@ -113,3 +113,27 @@
     padding: 6px 12px;
   }
 }
+
+@media screen and (max-width: 480px) {
+  .nav {
+    gap: 10px;
+  }
+
+  .nav__link {
+    font-size: 14px;
+  }
+
+  .nav__signin-btn {
+    font-size: 14px;
+    padding: 5px 12px;
+  }
+
+  .nav__profile-btn {
+    padding: 4px 10px;
+    gap: 4px;
+  }
+
+  .nav__profile-name {
+    font-size: 12px;
+  }
+}
