@@ -1,17 +1,17 @@
 import "./About.css";
-import avatar from "../../assets/avatar.svg";
+import avatar from "../../assets/avatar.jpg";
 
 function About() {
   return (
     <section className="about">
       <div className="about__container">
         <div className="about__image">
-          <img className="about__image-avatar" src={avatar} alt="Elise — author of NewsExplorer" />
+          <img className="about__image-avatar" src={avatar} alt="Rolan — author of NewsExplorer" />
         </div>
         <div className="about__content">
           <h2 className="about__title">About the author</h2>
           <p className="about__text">
-            Hi, I'm Elise! I'm a frontend developer with a passion for building clean,
+            Hi, I'm Rolan! I'm a frontend developer with a passion for building clean,
             user-friendly web applications. I recently completed the Software Engineering
             program at TripleTen, where I gained hands-on experience with modern web
             technologies like React, JavaScript, CSS, and responsive design.
