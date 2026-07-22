@@ -1,0 +1,139 @@
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav__link {
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: #ffffff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 0 4px;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+/* Light theme (saved articles page) */
+.header_theme_light .nav__link {
+  color: #1a1a1a;
+}
+
+.nav__link_active {
+  border-bottom: 1px solid #ffffff;
+}
+
+.header_theme_light .nav__link_active {
+  border-bottom-color: #1a1a1a;
+}
+
+.nav__signin-btn {
+  font-family: "Roboto", sans-serif;
+  background: transparent;
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+  padding: 8px 24px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.nav__signin-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.header_theme_light .nav__signin-btn {
+  border-color: #1a1a1a;
+  color: #1a1a1a;
+}
+
+.header_theme_light .nav__signin-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.nav__profile-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: 1px solid #ffffff;
+  border-radius: 20px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.nav__profile-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.header_theme_light .nav__profile-btn {
+  border-color: #1a1a1a;
+}
+
+.header_theme_light .nav__profile-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.nav__profile-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.header_theme_light .nav__profile-name {
+  color: #1a1a1a;
+}
+
+.nav__profile-icon {
+  font-size: 16px;
+}
+
+/* Mobile */
+@media screen and (max-width: 768px) {
+  .nav {
+    gap: 16px;
+  }
+
+  .nav__link {
+    font-size: 16px;
+  }
+
+  .nav__signin-btn {
+    font-size: 16px;
+    padding: 6px 16px;
+  }
+
+  .nav__profile-btn {
+    padding: 6px 12px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .nav {
+    gap: 10px;
+  }
+
+  .nav__link {
+    font-size: 14px;
+  }
+
+  .nav__signin-btn {
+    font-size: 14px;
+    padding: 5px 12px;
+  }
+
+  .nav__profile-btn {
+    padding: 4px 10px;
+    gap: 4px;
+  }
+
+  .nav__profile-name {
+    font-size: 12px;
+  }
+}
