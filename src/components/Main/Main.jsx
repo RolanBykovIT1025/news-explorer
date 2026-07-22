@@ -5,8 +5,7 @@ import NoResults from "../NoResults/NoResults";
 import About from "../About/About";
 import "./Main.css";
 
-function Main({ loggedIn, isSearching, isLoadingMore, isLoading, newsCards, hasSearched, onSearch, searchError, onSaveArticle, savedArticles, onSignInClick, totalResults, onShowMore }) {
-  const hasMore = newsCards.length > 0 && newsCards.length < totalResults;
+function Main({ loggedIn, isSearching, isLoadingMore, isLoading, newsCards, hasSearched, onSearch, searchError, onSaveArticle, savedArticles, onSignInClick, hasMore, onShowMore }) {
   return (
     <main className="main">
       <section className="hero">

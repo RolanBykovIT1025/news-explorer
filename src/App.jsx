@@ -8,6 +8,8 @@ import SignUpModal from "./components/SignUpModal/SignUpModal";
 import { searchNews, getNewsCardData } from "./utils/NewsApi";
 import "./App.css";
 
+const PAGE_SIZE = 3;
+
 function App() {
   const [currentPage, setCurrentPage] = useState("main");
   const [loggedIn, setLoggedIn] = useState(false);
@@ -21,8 +23,7 @@ function App() {
   const [searchError, setSearchError] = useState(null);
   const [savedArticles, setSavedArticles] = useState([]);
   const [currentKeyword, setCurrentKeyword] = useState("");
-  const [totalResults, setTotalResults] = useState(0);
-  const [searchPage, setSearchPage] = useState(1);
+  const [visibleCount, setVisibleCount] = useState(0);
 
   const isLoading = isSearching || isLoadingMore;
 
@@ -30,7 +31,7 @@ function App() {
     setIsSearching(true);
     setSearchError(null);
     setCurrentKeyword(keyword);
-    setSearchPage(1);
+    setVisibleCount(0);
 
     searchNews(keyword, 1)
       .then((data) => {
@@ -38,7 +39,7 @@ function App() {
           getNewsCardData(a, keyword)
         );
         setNewsCards(cards);
-        setTotalResults(data.totalResults || 0);
+        setVisibleCount(Math.min(PAGE_SIZE, cards.length));
         setHasSearched(true);
       })
       .catch((err) => {
@@ -50,26 +51,10 @@ function App() {
   }, []);
 
   const handleShowMore = useCallback(() => {
-    const nextPage = searchPage + 1;
-    setIsLoadingMore(true);
-
-    searchNews(currentKeyword, nextPage)
-      .then((data) => {
-        const cards = (data.articles || []).map((a) =>
-          getNewsCardData(a, currentKeyword)
-        );
-        setNewsCards((prev) => [...prev, ...cards]);
-        setSearchPage(nextPage);
-      })
-      .catch((err) => {
-        setSearchError(err.message);
-      })
-      .finally(() => setIsLoadingMore(false));
-  }, [currentKeyword, searchPage]);
+    setVisibleCount((prev) => Math.min(prev + PAGE_SIZE, newsCards.length));
+  }, [newsCards.length]);
 
   const handleSignIn = ({ email, password }) => {
-    // In production, this calls the backend API.
-    // Derive display name from email (part before @, capitalized)
     const name = email.split("@")[0].replace(/[._-]/g, " ");
     const displayName = name
       .split(" ")
@@ -81,8 +66,6 @@ function App() {
   };
 
   const handleSignUp = ({ name, email, password }) => {
-    // In production, this calls the backend API.
-    // For now, mock a successful registration + auto-login
     setCurrentUser({ name, email });
     setLoggedIn(true);
     setIsSignUpOpen(false);
@@ -124,6 +107,9 @@ function App() {
     setIsSignInOpen(true);
   };
 
+  const visibleCards = newsCards.slice(0, visibleCount);
+  const hasMore = visibleCount < newsCards.length;
+
   return (
     <div className="app">
       <Header
@@ -140,14 +126,14 @@ function App() {
           isSearching={isSearching}
           isLoadingMore={isLoadingMore}
           isLoading={isLoading}
-          newsCards={newsCards}
+          newsCards={visibleCards}
           hasSearched={hasSearched}
           onSearch={handleSearch}
           searchError={searchError}
           savedArticles={savedArticles}
           onSaveArticle={handleSaveArticle}
           onSignInClick={handleSignInClick}
-          totalResults={totalResults}
+          hasMore={hasMore}
           onShowMore={handleShowMore}
         />
       ) : (
