@@ -1,4 +1,5 @@
 import "./SavedNews.css";
+import deleteIcon from "../../assets/icons/delete.svg";
 
 function SavedNews({ loggedIn, currentUser, savedArticles, onDeleteArticle }) {
   const savedCards = savedArticles || [];
@@ -67,9 +68,7 @@ function SavedNews({ loggedIn, currentUser, savedArticles, onDeleteArticle }) {
                   onClick={() => onDeleteArticle(card)}
                   aria-label="Remove article"
                 >
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <path d="M13 3L3 13M3 3L13 13" stroke="#333" strokeWidth="1.5" strokeLinecap="round" />
-                  </svg>
+                  <img src={deleteIcon} alt="Delete" width="16" height="16" />
                 </button>
                 <span className="saved-news__card-keyword">{card.keyword}</span>
                 <div className="saved-news__card-body">

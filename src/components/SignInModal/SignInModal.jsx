@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./SignInModal.css";
+import closeIcon from "../../assets/icons/close.svg";
 
 function SignInModal({ isOpen, onClose, onSignUpClick, onSignIn }) {
   const [email, setEmail] = useState("");
@@ -74,9 +75,7 @@ function SignInModal({ isOpen, onClose, onSignUpClick, onSignIn }) {
     <div className="modal-overlay" onClick={handleClose}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
         <button className="modal__close" type="button" onClick={handleClose} aria-label="Close">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M4 4L20 20M20 4L4 20" stroke="#FFFFFF" strokeWidth="3" strokeLinecap="round" />
-          </svg>
+          <img src={closeIcon} alt="Close" width="24" height="24" />
         </button>
 
         <h2 className="modal__title">Sign in</h2>

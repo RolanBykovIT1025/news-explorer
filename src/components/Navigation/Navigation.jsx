@@ -1,4 +1,5 @@
 import "./Navigation.css";
+import profileIcon from "../../assets/icons/profile.svg";
 
 function Navigation({ loggedIn, currentUser, onSignIn, onLogout, currentPage, onPageChange }) {
   return (
@@ -24,10 +25,7 @@ function Navigation({ loggedIn, currentUser, onSignIn, onLogout, currentPage, on
           <button className="nav__profile-btn" type="button" onClick={onLogout} title="Sign out">
             <span className="nav__profile-name">{currentUser?.name || "User"}</span>
             <span className="nav__profile-icon">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <circle cx="8" cy="5" r="3" stroke="currentColor" strokeWidth="1.5" />
-                <path d="M2 14C2 10.6863 4.68629 8 8 8C11.3137 8 14 10.6863 14 14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-              </svg>
+              <img src={profileIcon} alt="User" width="16" height="16" />
             </span>
           </button>
         </div>

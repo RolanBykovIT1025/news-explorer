@@ -1,4 +1,6 @@
 import "./NewsCard.css";
+import bookmarkIcon from "../../assets/icons/bookmark.svg";
+import bookmarkFilledIcon from "../../assets/icons/bookmark-filled.svg";
 
 function NewsCard({ card, loggedIn, onSaveArticle, savedArticles, onSignInClick }) {
   const formatDate = (dateStr) => {
@@ -39,9 +41,12 @@ function NewsCard({ card, loggedIn, onSaveArticle, savedArticles, onSignInClick 
           onClick={handleAction}
           aria-label={isSaved ? "Unsave article" : "Save article"}
         >
-          <svg width="16" height="16" viewBox="0 0 16 16" fill={isSaved ? "#2f80ed" : "none"}>
-            <path d="M13 14L8 10.5L3 14V3C3 2.73478 3.10536 2.48043 3.29289 2.29289C3.48043 2.10536 3.73478 2 4 2H12C12.2652 2 12.5196 2.10536 12.7071 2.29289C12.8946 2.48043 13 2.73478 13 3V14Z" stroke={isSaved ? "#2f80ed" : "#333"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+          <img
+            src={isSaved ? bookmarkFilledIcon : bookmarkIcon}
+            alt={isSaved ? "Saved" : "Save"}
+            width="16"
+            height="16"
+          />
         </button>
         {!loggedIn && <div className="news-card__tooltip">Sign in to save articles</div>}
       </div>
