@@ -3,8 +3,14 @@ import deleteIcon from "../../assets/icons/delete.svg";
 
 function SavedNews({ loggedIn, currentUser, savedArticles, onDeleteArticle }) {
   const savedCards = savedArticles || [];
-  const keywords = [...new Set(savedCards.map((c) => c.keyword))];
   const userName = currentUser?.name || "User";
+
+  // Count articles per keyword
+  const keywordCounts = savedCards.reduce((acc, c) => {
+    acc[c.keyword] = (acc[c.keyword] || 0) + 1;
+    return acc;
+  }, {});
+  const keywordEntries = Object.entries(keywordCounts);
 
   const formatDate = (dateStr) => {
     if (!dateStr) return "November 4, 2020";
@@ -36,10 +42,20 @@ function SavedNews({ loggedIn, currentUser, savedArticles, onDeleteArticle }) {
         <h1 className="saved-news__title">
           {userName}, you have {savedCards.length} saved articles
         </h1>
-        {keywords.length > 0 && (
-          <p className="saved-news__keywords">
-            By keywords: <strong>{keywords.join(", ")}</strong>
-          </p>
+        {keywordEntries.length > 0 && (
+          <div>
+            <p className="saved-news__keywords">
+              By keywords: <strong>{keywordEntries.map(([k]) => k).join(", ")}</strong>
+            </p>
+            <div className="saved-news__keyword-tags">
+              {keywordEntries.map(([keyword, count]) => (
+                <span key={keyword} className="saved-news__keyword-tag">
+                  {keyword}
+                  <span className="saved-news__keyword-count">{count}</span>
+                </span>
+              ))}
+            </div>
+          </div>
         )}
       </section>
 
@@ -67,6 +83,7 @@ function SavedNews({ loggedIn, currentUser, savedArticles, onDeleteArticle }) {
                   type="button"
                   onClick={() => onDeleteArticle(card)}
                   aria-label="Remove article"
+                  title="Remove article"
                 >
                   <img src={deleteIcon} alt="Delete" width="16" height="16" />
                 </button>
