@@ -91,6 +91,9 @@
 
 .modal__input:focus {
   border-bottom-color: #2f80ed;
+  outline: 2px solid rgba(47, 128, 237, 0.3);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 .modal__input_error {

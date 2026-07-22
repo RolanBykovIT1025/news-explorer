@@ -19,6 +19,10 @@
   background: transparent;
 }
 
+.search-form__input:focus {
+  box-shadow: 0 0 0 2px rgba(47, 128, 237, 0.4);
+}
+
 .search-form__input::placeholder {
   color: #999999;
 }
@@ -67,6 +71,11 @@
     padding: 14px 20px;
     height: 48px;
     background: #ffffff;
+  }
+
+  .search-form__input:focus {
+    border-color: #2f80ed;
+    box-shadow: 0 0 0 2px rgba(47, 128, 237, 0.4);
   }
 
   .search-form__btn {
