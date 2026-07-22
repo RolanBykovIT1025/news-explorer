@@ -30,10 +30,125 @@
   color: #1a1a1a;
 }
 
+/* Hamburger menu button (hidden on desktop) */
+.header__menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: #ffffff;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+}
+
+.header__menu-btn_theme_light {
+  color: #1a1a1a;
+}
+
+/* Mobile overlay menu */
+.header__mobile-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #1a1a1a;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  padding: 16px 24px 24px;
+  flex-direction: column;
+  gap: 16px;
+  z-index: 100;
+}
+
+.header__mobile-menu_theme_light {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.header__mobile-link {
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: #ffffff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 0;
+  text-align: left;
+  width: 100%;
+}
+
+.header__mobile-link_active {
+  color: #2f80ed;
+}
+
+.header__mobile-menu_theme_light .header__mobile-link {
+  color: #1a1a1a;
+}
+
+.header__mobile-menu_theme_light .header__mobile-link_active {
+  color: #2f80ed;
+}
+
+.header__mobile-signin {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ffffff;
+  border-radius: 24px;
+  background: transparent;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #ffffff;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.header__mobile-menu_theme_light .header__mobile-signin {
+  border-color: #1a1a1a;
+  color: #1a1a1a;
+}
+
+.header__mobile-logout {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ffffff;
+  border-radius: 24px;
+  background: transparent;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #ffffff;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.header__mobile-menu_theme_light .header__mobile-logout {
+  border-color: #1a1a1a;
+  color: #1a1a1a;
+}
+
 /* Mobile */
 @media screen and (max-width: 768px) {
   .header {
     padding: 16px 20px;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .header__menu-btn {
+    display: flex;
+  }
+
+  .header__mobile-menu {
+    display: flex;
   }
 }
 
@@ -44,5 +159,13 @@
 
   .header__logo {
     font-size: 18px;
+  }
+
+  .header__mobile-menu {
+    padding: 12px 16px 20px;
+  }
+
+  .header__mobile-link {
+    font-size: 16px;
   }
 }
