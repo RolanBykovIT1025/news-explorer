@@ -30,6 +30,14 @@
   gap: 16px;
 }
 
+.about__image-avatar {
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
 .about__image-text {
   font-size: 14px;
   color: #6b7280;
@@ -81,6 +89,11 @@
     padding: 24px;
   }
 
+  .about__image-avatar {
+    width: 200px;
+    height: 200px;
+  }
+
   .about__title {
     font-size: 28px;
     margin-bottom: 16px;
@@ -100,6 +113,11 @@
     width: 160px;
     height: 160px;
     padding: 16px;
+  }
+
+  .about__image-avatar {
+    width: 160px;
+    height: 160px;
   }
 
   .about__image-text {

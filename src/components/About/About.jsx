@@ -1,28 +1,33 @@
 import "./About.css";
+import avatar from "../../assets/avatar.svg";
 
 function About() {
   return (
     <section className="about">
       <div className="about__container">
         <div className="about__image">
-          <div className="about__image-placeholder">
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-              <circle cx="24" cy="24" r="22" stroke="#999" strokeWidth="2" />
-              <circle cx="24" cy="16" r="6" stroke="#999" strokeWidth="2" />
-              <path d="M12 38C12 31.3726 17.3726 26 24 26C30.6274 26 36 31.3726 36 38" stroke="#999" strokeWidth="2" />
-            </svg>
-            <p className="about__image-text">Placeholder image. Put an image of yourself here.</p>
-          </div>
+          <img className="about__image-avatar" src={avatar} alt="Elise — author of NewsExplorer" />
         </div>
         <div className="about__content">
           <h2 className="about__title">About the author</h2>
           <p className="about__text">
-            This block describes the project author. Here you can indicate your name,
-            what you do, what technologies you know, and what skills you have.
+            Hi, I'm Elise! I'm a frontend developer with a passion for building clean,
+            user-friendly web applications. I recently completed the Software Engineering
+            program at TripleTen, where I gained hands-on experience with modern web
+            technologies like React, JavaScript, CSS, and responsive design.
           </p>
           <p className="about__text">
-            You can also talk about your experience with TripleTen, what you learned,
-            and what your next goals are.
+            This News Explorer app is my final project — it integrates with the News API
+            to let users search for articles, save their favorites, and manage a
+            personalized reading list. I focused on creating a polished UI with thoughtful
+            form validation, responsive layouts, and a smooth user experience across all
+            screen sizes.
+          </p>
+          <p className="about__text">
+            Outside of coding, I enjoy exploring new technologies, working on
+            creative side projects, and sharing what I learn with the developer
+            community. I'm excited to continue growing as a developer and take on
+            new challenges!
           </p>
         </div>
       </div>
